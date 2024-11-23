@@ -1,0 +1,268 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: #0ab52f;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    margin: 0;
+}
+
+.form-image {
+    flex-shrink: 0; /* Prevents the logo from shrinking */
+    margin-right: 20px; /* Adds space between logo and navigation */
+}
+
+.form-image img {
+    width: 100px; /* Fixed width */
+    height: 70px; /* Fixed height */
+    border-radius: 100%; /* Circular logo */
+    object-fit: cover; /* Ensures the image fits within the specified dimensions */
+}
+
+header .user-info {
+    display: flex;
+    align-items: center;
+    position: relative; /* Position relative for dropdown positioning */
+}
+
+header .user-info .user-name {
+    margin-right: 0.5px; /* Space between text and icon */
+    font-weight: bold;
+    color: #000; /* Set user name color to black */
+}
+
+header .user-info .logout-icon {
+    font-size: 1.3rem; /* Adjust the size of the icon */
+    color: #000; /* Set icon color to black */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: color 0.3s; /* Smooth transition for color change */
+}
+
+header .user-info .logout-icon:hover {
+    color: #ff0000; /* Change color on hover */
+}
+
+header .user-info .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Positions it below the user info */
+    right: 0;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 2000;
+    width: 120px; /* Adjust width as needed */
+    text-align: left;
+    padding: 0.5rem;
+}
+
+header .user-info:hover .dropdown-menu {
+    display: block;
+}
+
+header .dropdown-menu a {
+    color: #000; /* Set dropdown menu item color to black */
+    padding: 0.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+header .dropdown-menu a i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+header .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    position: relative;
+    color: #000;
+}
+
+nav ul li a {
+    color: #000; /* Changed to black for consistency */
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+nav ul li .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 2000;
+    width: 120px; /* Adjust width as needed */
+}
+
+nav ul li .dropdown-menu a {
+    color: #000;
+    padding: 0.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li .dropdown-menu a i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+nav ul li .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+main {
+    display: flex;
+    margin-top: 5rem; /* Adjusted padding for header */
+    flex: 1;
+}
+
+.sidebar {
+    background: #333;
+    color: #fff;
+    width: 200px;
+    padding: 1rem;
+    height: calc(100vh - 5rem - 60px); /* Full height minus header and footer height */
+    position: fixed;
+    top: 5rem; /* Below the header */
+    left: 0;
+    overflow-y: auto;
+    box-sizing: border-box; /* Include padding and border in element's width/height */
+    border-right: 2px solid #000; /* Add border to the right of the sidebar */
+}
+
+.transparent-element {
+    opacity: 0.5; /* 50% transparency */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 1rem;
+}
+
+.sidebar ul li a {
+    color: #000; /* Black text and icon */
+    text-decoration: none; /* No underline */
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 2px solid #fff;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f0f0f0;
+    border-color: #000;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 1rem;
+    width: calc(100% - 220px);
+}
+
+.dashboard-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

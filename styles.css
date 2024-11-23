@@ -1,0 +1,233 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    background: #fff;
+    width: 450px;
+    padding: 1.5rem;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.9);
+}
+
+.form-image {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0.50rem;
+}
+
+.form-image img {
+    width: 200px;
+    height: 180px;
+    border-radius: 100%;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.input-group {
+    padding: 1% 0;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.input-group i {
+    position: absolute;
+    color: black;
+    top: 50%;
+    transform: translateY(-50%);
+    
+}
+
+.input-group .password-icon {
+    left: 2px; /* Adjust space for left icon */
+}
+
+.input-group .toggle-password {
+    right: 10px; /* Move the eye icon to the right */
+}
+
+input {
+    color: inherit;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #757575;
+    padding-left: 2.5rem; /* Space for the left icon */
+    padding-right: 2.5rem; /* Space for the right icon */
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+input:focus {
+    background-color: transparent;
+    outline: transparent;
+    border-bottom: 2px solid hsl(327, 90%, 28%);
+}
+
+input::placeholder {
+    color: transparent;
+}
+
+label {
+    color: #757575;
+    position: absolute;
+    left: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: auto;
+    transition: 0.3s ease all;
+    font-size: 15px;
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    top: -1.5em;
+    color: hsl(327, 90%, 28%);
+    font-size: 12px;
+}
+
+.password-group {
+    position: relative;
+}
+
+.recover {
+    text-align: right;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.recover a {
+    text-decoration: none;
+    color: rgb(125, 125, 235);
+}
+
+.recover a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.btn {
+    font-size: 1.1rem;
+    padding: 8px 0;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 100%;
+    background: rgb(125, 125, 235);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #07001f;
+}
+
+.or {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.social-buttons {
+    margin-top: 1rem;
+}
+
+.social-btn {
+    font-size: 1.1rem;
+    padding: 8px 0;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    transition: background 0.3s;
+}
+
+.facebook-btn {
+    background-color: #3b5998;
+}
+
+.google-btn {
+    background-color: #db4437;
+}
+
+.social-btn i {
+    margin-right: 8px;
+}
+
+.facebook-btn:hover {
+    background-color: #2d4373;
+}
+
+.google-btn:hover {
+    background-color: #c1351d;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    padding: 0 4rem;
+    margin-top: 0.9rem;
+    font-weight: bold;
+}
+
+.links a {
+    text-decoration: none;
+    color: rgb(125, 125, 235);
+}
+
+.links a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+/* Style for the select dropdown */
+.select-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.select-group label {
+    font-size: 15px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.select-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #fff;
+    appearance: none; /* Remove default arrow */
+}
+
+.select-group::after {
+    content: '\f078'; /* Font Awesome arrow */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #888;
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .error-text {
+            color: red;
+            display: none;
+        }
+        .input-error {
+            border: 1px solid red;
+        }
+        body, html {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(0, 156, 0);
+        }
+        .signup-container {
+            display: flex;
+            width: 900px;
+            height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            background-color: rgb(45, 161, 45);
+        }
+        .signup-image {
+            width: 86.8%; /* Adjusted to half of the container width */
+            height: auto;
+        }
+        .signup-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+        .signup-form-container {
+            width: 50%; /* Adjusted to fill remaining half */
+            background-color: #fff;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .signup-logo {
+            width: 110px;
+            margin-bottom: 1.5px;
+        }
+        .signup-title {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .form-input-group {
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px; /* Increased margin for better spacing */
+        }
+
+        .form-input-group input,
+        .form-input-group select {
+            width: 100%;
+            padding: 6px 40px; /* Added padding for better spacing */
+            border: 1.5px solid #333;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9em;
+            
+        }
+        .form-input-group input:focus + label,
+        .form-input-group input:not(:placeholder-shown) + label {
+            display: none; /* Hide label */
+        }
+        .form-input-group i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #000;
+        }
+        .signup-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .signup-button:hover {
+            background-color: #45a049;
+        }
+        
+        .form-link:hover {
+            text-decoration: underline;
+        }
+        .links {
+            display:inline;
+            margin-top: 15px; /* Adjust margin as needed */
+            color: #4CAF50;
+            font-size: 0.9em;
+            font-weight: normal;
+            margin-right: 2px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px; /* Positioned on the right */
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #000;
+            margin-left: 228px;
+        }
+        /* Responsive adjustments */
+@media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column; /* Stack image and form vertically */
+        width: 90%; /* Take most of the screen width */
+        height: auto; /* Adjust height automatically */
+        margin: auto;
+    }
+
+    .signup-image {
+        width: 100%; /* Full width for image */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .signup-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* Cover the container with the image */
+    }
+
+    .signup-form-container {
+        width: 100%; /* Full width for form */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .signup-logo {
+        width: 90px; /* Smaller logo */
+    }
+
+    .signup-title {
+        font-size: 1.2rem; /* Adjust title font size */
+    }
+
+    .form-input-group input,
+    .form-input-group select {
+        font-size: 0.9em; /* Slightly smaller font size */
+    }
+
+    .signup-button {
+        font-size: 0.9em; /* Adjust button font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-logo {
+        width: 80px; /* Further reduce logo size for small screens */
+    }
+
+    .signup-title {
+        font-size: 1rem; /* Smaller title font size */
+    }
+
+    .signup-button {
+        padding: 10px; /* Adjust button padding */
+        font-size: 0.8em; /* Smaller font */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-image">
+            <img src="background.jpg" alt="Login Background">
+        </div>
+        <div class="signup-form-container">
+            <img src="logo.png" alt="Logo" class="signup-logo">
+            <form id="signupForm" onsubmit="return handleSignup(event)">
+                <div class="form-input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="fullname" name="fullname" placeholder=" " required>
+                    <label for="fullname">Full Name</label>
+                    <div class="error-text" id="fullname-error"></div>
+                </div>
+                <div class="form-input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder=" " required>
+                    <label for="username">Username</label>
+                    <div class="error-text" id="username-error"></div>
+                </div>
+                <div class="form-input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Email</label>
+                    <div class="error-text" id="email-error"></div>
+                </div>
+                <div class="form-input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <label for="password">Password</label>
+                    <i class="fas fa-eye password-toggle" onclick="togglePasswordVisibility('password')"></i>
+                </div>
+                <div class="form-input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                    <label for="confirm_password">Confirm Password</label>
+                    <i class="fas fa-eye password-toggle" onclick="togglePasswordVisibility('confirm_password')"></i>
+                </div>
+                <div class="error-text" id="error-message">Passwords do not match.</div>
+
+
+                <button type="submit" class="signup-button">Sign Up</button>
+                <div class="or" style="color: #000;">or</div>
+                    <a href="login.html" class="form-link" style="color: #4CAF50;  font-size: 0.9em; margin-left: 23px; margin-bottom: 5px;">Already have an account? Log In</a>               
+            </form>
+            <div id="signup-error" class="error-text"></div>
+        </div>
+    </div>
+    <script>
+         function togglePasswordVisibility(inputId) {
+    const inputField = document.getElementById(inputId);
+    const eyeIcon = inputField.nextElementSibling;
+
+    if (inputField.type === "password") {
+        inputField.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    } else {
+        inputField.type = "password"; // Change this line
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+    }
+}
+        
+        function handleSignup(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const fullname = document.getElementById("fullname").value; // Get full name
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm_password").value;
+
+    // Simple validation for password confirmation
+    const signupErrorDiv = document.getElementById("signup-error");
+    if (password !== confirmPassword) {
+        signupErrorDiv.style.display = "block";
+        signupErrorDiv.textContent = "Passwords do not match.";
+        return false; // Stop the form submission
+    } else {
+        signupErrorDiv.style.display = "none"; // Hide the error message if no error
+    }
+
+    // Proceed to submit the form
+    submitSignupForm(fullname, username, email, password); // Pass fullname to the function
+    return false; // Prevent the form from submitting the traditional way
+}
+
+function submitSignupForm(fullname, username, email, password) {
+    const role = "borrower"; // Fixed role
+
+    // Submit form via AJAX
+    const formData = new FormData();
+    formData.append('fullname', fullname); // Include full name
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('role', role);
+
+    fetch('signup_process.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Handle response from signup_process.php
+        console.log(data);
+        // Redirect or display a success message if needed
+        if (data === 'success') {
+            // Redirect to login page after successful signup
+            window.location.href = 'login.html';
+        } else {
+            // Display error message
+            const signupErrorDiv = document.getElementById("signup-error");
+            signupErrorDiv.style.display = "block";
+            signupErrorDiv.textContent = data; // Show any error returned from the server
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+    </script>
+</body>
+</html>

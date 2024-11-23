@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: rgb(0, 156, 0);
+        }
+        
+        .login-container {
+            display: flex;
+            width: 900px;
+            height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .login-form {
+            width: 50%;
+            background-color: #fff;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form img.logo {
+            width: 150px; /* Adjust the size as needed */
+            margin-bottom: 20px;
+        }
+
+        .login-form h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .login-form p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        .input-group {
+            position: relative;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 30px;
+            border: 1.5px solid #333;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9em;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #000;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #45a049;
+        }
+
+        .login-form a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 15px;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .login-form a:hover {
+            text-decoration: underline;
+        }
+
+        .login-form .toggle-password {
+            position: absolute;
+            left: 248px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #000;
+        }
+        /* Ensure responsive container width */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column; /* Stack image and form vertically */
+        width: 90%;
+        height: auto; /* Allow height to adjust */
+        margin: auto;
+    }
+
+    .login-image img {
+        width: 100%; /* Make background image responsive */
+        height: auto;
+        object-fit: cover;
+    }
+
+    .login-form {
+        width: 100%; /* Expand form width */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-form img.logo {
+        width: 100px; /* Adjust logo size */
+    }
+    
+    .login-form h2 {
+        font-size: 1.2em; /* Slightly reduce title font size */
+    }
+
+    .input-group input {
+        font-size: 0.9em; /* Reduce input font size */
+    }
+
+    .login-form button {
+        font-size: 0.9em; /* Adjust button font size */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-image">
+            <img src="background.jpg" alt="Login Background">
+        </div>
+        <div class="login-form">
+            <img src="logo.png" alt="Logo" class="logo">
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility('password')"></i>
+                </div>
+                <div id="error-message" style="color: red; display: none;text-align: left; margin-top: 10px;"></div>
+                <a href="forgot-password.php" style="margin-left: 138px; margin-bottom: 15px;">Forgot Password?</a>
+                <button type="submit" style="margin-top: 15px; margin-bottom: 10px;">Login</button>
+                <div class="or" style="text-align: center;">or</div>
+                <a href="signup.html" style="margin-left: 23px;">Don’t have an account? Sign Up</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Save username and password to localStorage on input change
+        document.getElementById("username").addEventListener("input", function() {
+            localStorage.setItem("savedUsername", this.value);
+        });
+        
+        document.getElementById("password").addEventListener("input", function() {
+            localStorage.setItem("savedPassword", this.value);
+        });
+
+        // Pre-fill fields if values are stored in localStorage
+        window.onload = function() {
+            const savedUsername = localStorage.getItem("savedUsername");
+            const savedPassword = localStorage.getItem("savedPassword");
+            
+            if (savedUsername) {
+                document.getElementById("username").value = savedUsername;
+            }
+            if (savedPassword) {
+                document.getElementById("password").value = savedPassword;
+            }
+        };
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            errorMessage.style.display = "none";
+            errorMessage.textContent = "";
+
+            fetch("login_process.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.role === 'admin' ? 'admin_dashboard.php' : 'borrower_dashboard.php';
+                } else {
+                    errorMessage.textContent = data.message;
+                    errorMessage.style.display = "block";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = "An error occurred. Please try again.";
+                errorMessage.style.display = "block";
+            });
+        });
+
+        function togglePasswordVisibility(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const toggleIcon = passwordField.nextElementSibling;
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+            toggleIcon.classList.toggle("fa-eye");
+            toggleIcon.classList.toggle("fa-eye-slash");
+        }
+    </script>
+</body>
+</html>
